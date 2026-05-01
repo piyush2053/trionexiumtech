@@ -4,12 +4,13 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import {
   ClipboardList, Cloud, Code2, Settings, Rocket,
   FileText, Shield, Database, Cpu, Server, Coffee,
-  Wrench, ChevronRight, Star,
+  Wrench, ChevronRight, Star, Layers, HardDrive,
 } from 'lucide-react'
 
 // Category header icons
 const CATEGORY_ICONS = {
   compliance: <ClipboardList size={16} color="var(--green)" />,
+  oracle:     <Database      size={16} color="var(--green)" />,
   cloud:      <Cloud         size={16} color="var(--green)" />,
   frontend:   <Code2         size={16} color="var(--green)" />,
   backend:    <Settings      size={16} color="var(--green)" />,
@@ -18,13 +19,15 @@ const CATEGORY_ICONS = {
 
 // Service card large icons
 const SERVICE_ICONS = {
-  zatca:      <FileText size={28} color="var(--green)" />,
-  cloudflare: <Shield   size={28} color="var(--green)" />,
-  oracle:     <Database size={28} color="var(--green)" />,
-  react:      <Cpu      size={28} color="var(--green)" />,
-  node:       <Server   size={28} color="var(--green)" />,
-  java:       <Coffee   size={28} color="var(--green)" />,
-  devops:     <Wrench   size={28} color="var(--green)" />,
+  zatca:      <FileText    size={28} color="var(--green)" />,
+  cloudflare: <Shield      size={28} color="var(--green)" />,
+  oracle:     <Database    size={28} color="var(--green)" />,
+  fusion:     <Layers      size={28} color="var(--green)" />,
+  ebs:        <HardDrive   size={28} color="var(--green)" />,
+  react:      <Cpu         size={28} color="var(--green)" />,
+  node:       <Server      size={28} color="var(--green)" />,
+  java:       <Coffee      size={28} color="var(--green)" />,
+  devops:     <Wrench      size={28} color="var(--green)" />,
 }
 
 const SERVICES = [
@@ -49,6 +52,48 @@ const SERVICES = [
         ],
         techs: ['XML/UBL', 'REST API', 'PKI/HSM', 'Oracle ERP', 'SAP', 'Java', 'Node.js'],
         highlight: true,
+      },
+    ],
+  },
+  {
+    category: 'Oracle Enterprise Applications',
+    categoryIconKey: 'oracle',
+    items: [
+      {
+        iconKey: 'fusion',
+        title: 'Oracle Fusion Cloud',
+        subtitle: 'ERP, HCM, SCM & CX Cloud Applications',
+        desc: 'End-to-end Oracle Fusion Cloud implementation, customization, and support. From Financials and HCM to Supply Chain and CX — we configure, extend, and integrate Oracle Fusion applications to fit your exact business processes.',
+        features: [
+          'Oracle Fusion ERP (Financials, GL, AP, AR)',
+          'Oracle HCM Cloud (Core HR, Payroll, Talent)',
+          'Oracle SCM Cloud (Procurement, Inventory)',
+          'Oracle CX / CRM Cloud',
+          'Fast Formula & HDL data loading',
+          'OTBI & BI Publisher reporting',
+          'REST / SOAP web service integrations',
+          'Fusion to OIC integration design',
+        ],
+        techs: ['Oracle Fusion', 'OTBI', 'HDL', 'Fast Formula', 'BI Publisher', 'REST API', 'OIC'],
+        highlight: false,
+      },
+      {
+        iconKey: 'ebs',
+        title: 'Oracle E-Business Suite (EBS)',
+        subtitle: 'EBS Implementation, Support & Migration',
+        desc: 'Deep Oracle EBS expertise across all major modules. Whether you need a fresh implementation, ongoing support, customization via Oracle Forms & Reports, or a migration path to Oracle Fusion Cloud — we cover the full EBS lifecycle.',
+        features: [
+          'EBS Financials (GL, AP, AR, FA, CM)',
+          'EBS HRMS & Payroll',
+          'EBS Procurement & Inventory',
+          'Oracle Forms & Reports customization',
+          'PL/SQL development & tuning',
+          'Oracle Workflow & AME configuration',
+          'EBS to Fusion migration roadmap',
+          'Patch management & upgrades',
+        ],
+        techs: ['Oracle EBS', 'PL/SQL', 'Oracle Forms', 'Oracle Reports', 'AME', 'SQL*Plus', 'TOAD'],
+        highlight: false,
       },
     ],
   },

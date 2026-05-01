@@ -7,25 +7,41 @@ import AnimatedCounter from '../components/AnimatedCounter'
 import {
   FileText, Shield, Cloud, Code2, Server, Coffee,
   Zap, Lock, Globe2, Handshake, Rocket, Check,
-  ChevronRight
+  ChevronRight, Layers, HardDrive,
 } from 'lucide-react'
 
 const TECH_TAGS = [
-  'ZATCA', 'Cloudflare', 'Oracle Cloud', 'JavaScript',
-  'TypeScript', 'Node.js', 'React', 'Java', 'OIC',
+  'ZATCA', 'Cloudflare', 'Oracle Cloud', 'Oracle Fusion', 'EBS',
+  'JavaScript', 'TypeScript', 'Node.js', 'React', 'Java', 'OIC',
   'IAM', 'Docker', 'DevOps', 'E-Invoicing', 'API Integration',
 ]
 
 const SERVICE_ICONS = {
-  zatca:      <FileText size={24} color="var(--green)" />,
-  cloudflare: <Shield   size={24} color="var(--green)" />,
-  oracle:     <Cloud    size={24} color="var(--green)" />,
-  react:      <Code2    size={24} color="var(--green)" />,
-  node:       <Server   size={24} color="var(--green)" />,
-  java:       <Coffee   size={24} color="var(--green)" />,
+  zatca:      <FileText  size={24} color="var(--green)" />,
+  cloudflare: <Shield    size={24} color="var(--green)" />,
+  oracle:     <Cloud     size={24} color="var(--green)" />,
+  fusion:     <Layers    size={24} color="var(--green)" />,
+  ebs:        <HardDrive size={24} color="var(--green)" />,
+  react:      <Code2     size={24} color="var(--green)" />,
+  node:       <Server    size={24} color="var(--green)" />,
+  java:       <Coffee    size={24} color="var(--green)" />,
 }
 
 const SERVICES_PREVIEW = [
+  {
+    iconKey: 'fusion',
+    tag: 'Oracle Fusion',
+    title: 'Oracle Fusion Cloud',
+    desc: 'End-to-end Oracle Fusion ERP, HCM, SCM & CX implementation and support. We configure, extend, and integrate Fusion Cloud apps to fit your exact business processes.',
+    techs: ['Oracle Fusion', 'OTBI', 'HDL', 'Fast Formula', 'OIC'],
+  },
+  {
+    iconKey: 'ebs',
+    tag: 'Oracle EBS',
+    title: 'Oracle E-Business Suite',
+    desc: 'Deep Oracle EBS expertise — Financials, HRMS, Procurement, and custom PL/SQL development. Full lifecycle support from implementation to Fusion migration.',
+    techs: ['Oracle EBS', 'PL/SQL', 'Oracle Forms', 'Oracle Reports', 'SQL'],
+  },
   {
     iconKey: 'zatca',
     tag: 'Compliance',
@@ -41,13 +57,6 @@ const SERVICES_PREVIEW = [
     techs: ['Workers', 'CDN', 'WAF', 'Zero Trust'],
   },
   {
-    iconKey: 'oracle',
-    tag: 'Integration',
-    title: 'Oracle Cloud OIC',
-    desc: 'Oracle Integration Cloud solutions for seamless enterprise connectivity. ERP integrations, API management, and business process automation.',
-    techs: ['OIC', 'ERP', 'REST', 'SOAP'],
-  },
-  {
     iconKey: 'react',
     tag: 'Frontend',
     title: 'React & TypeScript',
@@ -60,13 +69,6 @@ const SERVICES_PREVIEW = [
     title: 'Node.js & APIs',
     desc: 'Scalable RESTful and GraphQL APIs, microservices architecture, real-time systems with WebSockets, and backend-for-frontend patterns.',
     techs: ['Node.js', 'Express', 'GraphQL', 'PostgreSQL'],
-  },
-  {
-    iconKey: 'java',
-    tag: 'Enterprise',
-    title: 'Java Enterprise',
-    desc: 'Robust Java-based enterprise solutions with Spring Boot, microservices, and JVM ecosystem. Mission-critical backend systems.',
-    techs: ['Java', 'Spring Boot', 'Maven', 'JPA'],
   },
 ]
 
