@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
+import { useQuoteModal } from '../contexts/QuoteModalContext'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import {
   ClipboardList, Cloud, Code2, Settings, Rocket,
@@ -233,6 +234,7 @@ const SERVICES = [
 
 export default function Services() {
   useScrollReveal()
+  const { openQuoteModal } = useQuoteModal()
 
   return (
     <>
@@ -258,9 +260,9 @@ export default function Services() {
               Enterprise-grade solutions across compliance, cloud, and full-stack development. Built by experts, delivered with precision.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 32, flexWrap: 'wrap' }}>
-              <Link to="/about" className="btn btn-primary">
+              <button onClick={openQuoteModal} className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 Get Free Quote <ChevronRight size={16} style={{ display: 'inline', verticalAlign: 'middle' }} />
-              </Link>
+              </button>
               <Link to="/about" className="btn btn-outline">Talk to an Expert</Link>
             </div>
           </div>
@@ -325,9 +327,9 @@ export default function Services() {
                     </div>
 
                     <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid var(--border-light)', display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                      <Link to="/about" className="btn btn-primary" style={{ padding: '11px 24px', fontSize: '0.875rem' }}>
+                      <button onClick={openQuoteModal} className="btn btn-primary" style={{ padding: '11px 24px', fontSize: '0.875rem', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                         Get Quote <ChevronRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} />
-                      </Link>
+                      </button>
                       <Link to="/about" className="btn btn-outline" style={{ padding: '11px 24px', fontSize: '0.875rem' }}>
                         Learn More
                       </Link>
