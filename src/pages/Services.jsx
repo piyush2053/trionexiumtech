@@ -1,14 +1,39 @@
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import {
+  ClipboardList, Cloud, Code2, Settings, Rocket,
+  FileText, Shield, Database, Cpu, Server, Coffee,
+  Wrench, ChevronRight, Star,
+} from 'lucide-react'
+
+// Category header icons
+const CATEGORY_ICONS = {
+  compliance: <ClipboardList size={16} color="var(--green)" />,
+  cloud:      <Cloud         size={16} color="var(--green)" />,
+  frontend:   <Code2         size={16} color="var(--green)" />,
+  backend:    <Settings      size={16} color="var(--green)" />,
+  devops:     <Rocket        size={16} color="var(--green)" />,
+}
+
+// Service card large icons
+const SERVICE_ICONS = {
+  zatca:      <FileText size={28} color="var(--green)" />,
+  cloudflare: <Shield   size={28} color="var(--green)" />,
+  oracle:     <Database size={28} color="var(--green)" />,
+  react:      <Cpu      size={28} color="var(--green)" />,
+  node:       <Server   size={28} color="var(--green)" />,
+  java:       <Coffee   size={28} color="var(--green)" />,
+  devops:     <Wrench   size={28} color="var(--green)" />,
+}
 
 const SERVICES = [
   {
     category: 'Compliance & Regulatory',
-    categoryIcon: '📋',
+    categoryIconKey: 'compliance',
     items: [
       {
-        icon: '🧾',
+        iconKey: 'zatca',
         title: 'ZATCA E-Invoicing',
         subtitle: 'Saudi Arabia Fatoorah Compliance',
         desc: 'Complete ZATCA Phase 1 & Phase 2 e-invoicing compliance solutions for businesses operating in Saudi Arabia. We handle the full lifecycle — from system integration and XML generation to clearance, reporting, and ZATCA portal connectivity.',
@@ -29,10 +54,10 @@ const SERVICES = [
   },
   {
     category: 'Cloud & Infrastructure',
-    categoryIcon: '☁',
+    categoryIconKey: 'cloud',
     items: [
       {
-        icon: '🔥',
+        iconKey: 'cloudflare',
         title: 'Cloudflare Services',
         subtitle: 'Enterprise CDN, Security & Edge Computing',
         desc: 'Full Cloudflare implementation and management — from enterprise CDN setup and DDoS mitigation to Zero Trust network access, Workers edge functions, and comprehensive WAF policies.',
@@ -50,7 +75,7 @@ const SERVICES = [
         highlight: false,
       },
       {
-        icon: '🔷',
+        iconKey: 'oracle',
         title: 'Oracle Cloud OIC',
         subtitle: 'Oracle Integration Cloud Platform',
         desc: 'Enterprise Oracle Integration Cloud (OIC) solutions for complex business process automation and system connectivity. We design, build, and maintain integration flows that connect your Oracle applications with any third-party system.',
@@ -71,10 +96,10 @@ const SERVICES = [
   },
   {
     category: 'Frontend Development',
-    categoryIcon: '⚛',
+    categoryIconKey: 'frontend',
     items: [
       {
-        icon: '⚛',
+        iconKey: 'react',
         title: 'React & Next.js',
         subtitle: 'Modern Frontend Applications',
         desc: 'High-performance, SEO-friendly web applications built with React ecosystem. From single-page applications and admin dashboards to full-stack Next.js portals with server-side rendering and static generation.',
@@ -95,10 +120,10 @@ const SERVICES = [
   },
   {
     category: 'Backend Development',
-    categoryIcon: '⚙',
+    categoryIconKey: 'backend',
     items: [
       {
-        icon: '🟢',
+        iconKey: 'node',
         title: 'Node.js & APIs',
         subtitle: 'Scalable Backend & Microservices',
         desc: 'Production-ready Node.js backends — RESTful APIs, GraphQL endpoints, WebSocket real-time systems, and microservice architectures. Built for scale with proper testing, monitoring, and DevOps pipelines.',
@@ -116,7 +141,7 @@ const SERVICES = [
         highlight: false,
       },
       {
-        icon: '☕',
+        iconKey: 'java',
         title: 'Java Enterprise',
         subtitle: 'Spring Boot & Enterprise Applications',
         desc: 'Enterprise-grade Java applications with Spring Boot, Spring Security, and the full JVM ecosystem. Ideal for mission-critical systems requiring performance, reliability, and long-term maintainability.',
@@ -137,10 +162,10 @@ const SERVICES = [
   },
   {
     category: 'DevOps & Architecture',
-    categoryIcon: '🚀',
+    categoryIconKey: 'devops',
     items: [
       {
-        icon: '🔧',
+        iconKey: 'devops',
         title: 'DevOps & CI/CD',
         subtitle: 'Cloud Infrastructure & Automation',
         desc: 'End-to-end DevOps transformation — CI/CD pipeline setup, infrastructure as code, containerization, and cloud deployment on AWS, Azure, GCP, or Oracle Cloud.',
@@ -174,6 +199,7 @@ export default function Services() {
       </Helmet>
 
       <div className="page-wrapper">
+
         {/* ── Inner Hero ── */}
         <section className="inner-hero">
           <div className="grid-bg" />
@@ -187,7 +213,9 @@ export default function Services() {
               Enterprise-grade solutions across compliance, cloud, and full-stack development. Built by experts, delivered with precision.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 32, flexWrap: 'wrap' }}>
-              <Link to="/about" className="btn btn-primary">Get Free Quote →</Link>
+              <Link to="/about" className="btn btn-primary">
+                Get Free Quote <ChevronRight size={16} style={{ display: 'inline', verticalAlign: 'middle' }} />
+              </Link>
               <Link to="/about" className="btn btn-outline">Talk to an Expert</Link>
             </div>
           </div>
@@ -198,9 +226,11 @@ export default function Services() {
           <section key={ci} className="section" style={{ background: ci % 2 === 0 ? 'var(--black)' : 'var(--dark)' }}>
             {ci % 2 === 0 && <div className="grid-bg" />}
             <div className="container">
+
               <div className="reveal" style={{ marginBottom: 48 }}>
-                <div className="section-tag">
-                  {cat.categoryIcon} {cat.category}
+                <div className="section-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                  {CATEGORY_ICONS[cat.categoryIconKey]}
+                  {cat.category}
                 </div>
               </div>
 
@@ -210,16 +240,22 @@ export default function Services() {
                 gap: 24,
               }}>
                 {cat.items.map((svc, si) => (
-                  <div key={si} className={`service-detail-card reveal delay-${si + 1} ${svc.highlight ? 'highlighted-service' : ''}`}
-                    style={svc.highlight ? { borderColor: 'rgba(109,199,38,0.3)', background: 'linear-gradient(135deg, #111118 0%, #0d1a05 100%)' } : {}}>
-
+                  <div
+                    key={si}
+                    className={`service-detail-card reveal delay-${si + 1} ${svc.highlight ? 'highlighted-service' : ''}`}
+                    style={svc.highlight ? { borderColor: 'rgba(109,199,38,0.3)', background: 'linear-gradient(135deg, #111118 0%, #0d1a05 100%)' } : {}}
+                  >
                     <div className="service-detail-header">
-                      <div className="service-icon-lg">{svc.icon}</div>
+                      <div className="service-icon-lg">
+                        {SERVICE_ICONS[svc.iconKey]}
+                      </div>
                       <div>
                         <h2 className="service-detail-title">{svc.title}</h2>
                         <div className="service-detail-sub">{svc.subtitle}</div>
                         {svc.highlight && (
-                          <span className="badge badge-green" style={{ marginTop: 8 }}>★ Most Popular</span>
+                          <span className="badge badge-green" style={{ marginTop: 8, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                            <Star size={12} fill="currentColor" /> Most Popular
+                          </span>
                         )}
                       </div>
                     </div>
@@ -235,7 +271,9 @@ export default function Services() {
                     </div>
 
                     <div style={{ marginTop: 28 }}>
-                      <p style={{ fontSize: '0.8rem', color: 'var(--gray)', fontFamily: 'var(--font-display)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12, fontWeight: 600 }}>Tech Stack</p>
+                      <p style={{ fontSize: '0.8rem', color: 'var(--gray)', fontFamily: 'var(--font-display)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12, fontWeight: 600 }}>
+                        Tech Stack
+                      </p>
                       <div className="tech-pills">
                         {svc.techs.map(t => <span key={t} className="tech-pill">{t}</span>)}
                       </div>
@@ -243,7 +281,7 @@ export default function Services() {
 
                     <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid var(--border-light)', display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                       <Link to="/about" className="btn btn-primary" style={{ padding: '11px 24px', fontSize: '0.875rem' }}>
-                        Get Quote →
+                        Get Quote <ChevronRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} />
                       </Link>
                       <Link to="/about" className="btn btn-outline" style={{ padding: '11px 24px', fontSize: '0.875rem' }}>
                         Learn More
@@ -272,12 +310,15 @@ export default function Services() {
               </h2>
               <p>We handle custom technology challenges. Tell us your problem — we'll engineer the solution.</p>
               <div className="cta-btns">
-                <Link to="/about" className="btn btn-primary">Talk to Our Team →</Link>
+                <Link to="/about" className="btn btn-primary">
+                  Talk to Our Team <ChevronRight size={16} style={{ display: 'inline', verticalAlign: 'middle' }} />
+                </Link>
                 <Link to="/about" className="btn btn-outline">View Case Studies</Link>
               </div>
             </div>
           </div>
         </section>
+
       </div>
     </>
   )

@@ -1,24 +1,31 @@
 import { Link } from 'react-router-dom'
+import { Globe } from 'lucide-react'
 import logo from '../assets/logo.png'
-
-const services = ['ZATCA Solutions', 'Cloudflare Services', 'Oracle Cloud OIC', 'JavaScript / TypeScript', 'Node.js & React', 'Cloud Architecture']
-const company = ['About Us', 'Services', 'Careers', 'Blog']
-const legal = ['Privacy Policy', 'Terms & Conditions', 'Cookie Policy']
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
+
           <div className="footer-brand">
             <img src={logo} alt="Trionexium Technologies" className="footer-logo" />
             <p>
               Empowering enterprises with cutting-edge technology solutions. From ZATCA compliance to cloud transformation — we deliver excellence.
             </p>
             <div style={{ marginTop: 24 }}>
-              <a href="https://trionexiumtechnologies.com" target="_blank" rel="noreferrer"
-                style={{ color: 'var(--green)', fontSize: '0.875rem', fontFamily: 'var(--font-display)', fontWeight: 600 }}>
-                🌐 trionexiumtechnologies.com
+              <a
+                href="https://trionexiumtechnologies.com"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  color: 'var(--green)', fontSize: '0.875rem',
+                  fontFamily: 'var(--font-display)', fontWeight: 600,
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                }}
+              >
+                <Globe size={14} />
+                trionexiumtechnologies.com
               </a>
             </div>
           </div>
@@ -26,7 +33,10 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Services</h4>
             <div className="footer-links">
-              {services.map(s => (
+              {[
+                'ZATCA Solutions', 'Cloudflare Services', 'Oracle Cloud OIC',
+                'JavaScript / TypeScript', 'Node.js & React', 'Cloud Architecture',
+              ].map(s => (
                 <Link key={s} to="/services" className="footer-link">{s}</Link>
               ))}
             </div>
@@ -57,6 +67,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
+
         </div>
 
         <div className="footer-bottom">

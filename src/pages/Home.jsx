@@ -4,51 +4,65 @@ import { Helmet } from 'react-helmet-async'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import ParticleCanvas from '../components/ParticleCanvas'
 import AnimatedCounter from '../components/AnimatedCounter'
+import {
+  FileText, Shield, Cloud, Code2, Server, Coffee,
+  Zap, Lock, Globe2, Handshake, Rocket, Check,
+  ChevronRight
+} from 'lucide-react'
 
 const TECH_TAGS = [
-  '⚡ ZATCA', '☁ Cloudflare', '🔷 Oracle Cloud', '🟨 JavaScript',
-  '🔵 TypeScript', '🟢 Node.js', '⚛ React', '☕ Java', '🌐 OIC',
-  '🔐 IAM', '📦 Docker', '🚀 DevOps', '💳 E-Invoicing', '🔗 API Integration',
+  'ZATCA', 'Cloudflare', 'Oracle Cloud', 'JavaScript',
+  'TypeScript', 'Node.js', 'React', 'Java', 'OIC',
+  'IAM', 'Docker', 'DevOps', 'E-Invoicing', 'API Integration',
 ]
+
+const SERVICE_ICONS = {
+  zatca:      <FileText size={24} color="var(--green)" />,
+  cloudflare: <Shield   size={24} color="var(--green)" />,
+  oracle:     <Cloud    size={24} color="var(--green)" />,
+  react:      <Code2    size={24} color="var(--green)" />,
+  node:       <Server   size={24} color="var(--green)" />,
+  java:       <Coffee   size={24} color="var(--green)" />,
+}
 
 const SERVICES_PREVIEW = [
   {
-    icon: '🧾',
+    iconKey: 'zatca',
     tag: 'Compliance',
     title: 'ZATCA E-Invoicing',
     desc: 'Full Phase 1 & Phase 2 ZATCA compliance solutions. We handle integration, clearance, and reporting for Saudi Arabia e-invoicing mandates.',
     techs: ['Fatoorah', 'XML', 'API', 'PKI'],
   },
   {
-    icon: '🔥',
+    iconKey: 'cloudflare',
     tag: 'Security & CDN',
     title: 'Cloudflare Services',
     desc: 'Enterprise CDN, DDoS protection, Zero Trust security, and Workers deployment. Keep your infrastructure fast and bulletproof.',
     techs: ['Workers', 'CDN', 'WAF', 'Zero Trust'],
   },
   {
-    icon: '☁',
+    iconKey: 'oracle',
     tag: 'Integration',
     title: 'Oracle Cloud OIC',
     desc: 'Oracle Integration Cloud solutions for seamless enterprise connectivity. ERP integrations, API management, and business process automation.',
     techs: ['OIC', 'ERP', 'REST', 'SOAP'],
   },
   {
-    icon: '⚛',
+    iconKey: 'react',
     tag: 'Frontend',
     title: 'React & TypeScript',
     desc: 'Modern, performant frontend applications built with React, TypeScript, and Next.js. Component libraries, dashboards, and portals.',
     techs: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
   },
   {
-    icon: '🟢',
+    iconKey: 'node',
     tag: 'Backend',
     title: 'Node.js & APIs',
     desc: 'Scalable RESTful and GraphQL APIs, microservices architecture, real-time systems with WebSockets, and backend-for-frontend patterns.',
     techs: ['Node.js', 'Express', 'GraphQL', 'PostgreSQL'],
   },
   {
-    icon: '☕',
+    iconKey: 'java',
     tag: 'Enterprise',
     title: 'Java Enterprise',
     desc: 'Robust Java-based enterprise solutions with Spring Boot, microservices, and JVM ecosystem. Mission-critical backend systems.',
@@ -57,23 +71,38 @@ const SERVICES_PREVIEW = [
 ]
 
 const STATS = [
-  { num: 50, suffix: '+', label: 'Happy Clients' },
+  { num: 50,  suffix: '+', label: 'Happy Clients' },
   { num: 120, suffix: '+', label: 'Projects Delivered' },
-  { num: 8, suffix: '+', label: 'Years Experience' },
-  { num: 99, suffix: '%', label: 'Client Satisfaction' },
+  { num: 8,   suffix: '+', label: 'Years Experience' },
+  { num: 99,  suffix: '%', label: 'Client Satisfaction' },
 ]
 
 const PROCESS = [
-  { n: '01', title: 'Discovery', desc: 'We deeply understand your business goals, technical landscape, and project requirements.' },
+  { n: '01', title: 'Discovery',    desc: 'We deeply understand your business goals, technical landscape, and project requirements.' },
   { n: '02', title: 'Architecture', desc: 'Our experts design a scalable, future-proof solution architecture tailored to your needs.' },
-  { n: '03', title: 'Development', desc: 'Agile sprints with transparent communication. Quality code, tested and reviewed at every step.' },
-  { n: '04', title: 'Delivery', desc: 'Smooth deployment, training, and ongoing support. We stay with you beyond go-live.' },
+  { n: '03', title: 'Development',  desc: 'Agile sprints with transparent communication. Quality code, tested and reviewed at every step.' },
+  { n: '04', title: 'Delivery',     desc: 'Smooth deployment, training, and ongoing support. We stay with you beyond go-live.' },
 ]
 
 const CLIENTS = [
   'Aramco', 'STC Group', 'Maaden', 'SABIC', 'Al-Rajhi Bank', 'SAMBA Financial',
   'Mobily', 'Zain KSA', 'Almarai', 'Saudi Telecom', 'GOSI', 'ZATCA Authority',
   'Riyad Bank', 'National Guard', 'Saudi Post', 'Tasnee', 'Saudi Aramco', 'SASO',
+]
+
+const WHY_US = [
+  { icon: <Zap      size={18} color="var(--green)" />, title: 'Rapid Delivery',       desc: 'Agile methodology ensures faster time-to-market without sacrificing quality.' },
+  { icon: <Lock     size={18} color="var(--green)" />, title: 'Security-First',        desc: 'Enterprise-grade security built into every solution from the ground up.' },
+  { icon: <Globe2   size={18} color="var(--green)" />, title: 'Global Standards',      desc: 'Compliance with international and regional regulations including ZATCA, GDPR, and ISO.' },
+  { icon: <Handshake size={18} color="var(--green)" />, title: 'Long-term Partnership', desc: 'We invest in your success. Ongoing support, scaling, and continuous improvement.' },
+]
+
+const QUOTE_CHECKLIST = [
+  'Free Technical Consultation',
+  'Custom Solution Design',
+  'No Obligation Quote',
+  'Fast 24hr Response',
+  'NDA & Confidentiality',
 ]
 
 export default function Home() {
@@ -97,7 +126,7 @@ export default function Home() {
       <section className="hero" id="home">
         <ParticleCanvas />
         <div className="orb orb-green" style={{ width: 600, height: 600, top: '-100px', right: '-100px', animation: 'glow-pulse 4s ease-in-out infinite' }} />
-        <div className="orb orb-blue" style={{ width: 400, height: 400, bottom: '0', left: '-100px', animation: 'glow-pulse 5s ease-in-out infinite 1s' }} />
+        <div className="orb orb-blue"  style={{ width: 400, height: 400, bottom: '0', left: '-100px', animation: 'glow-pulse 5s ease-in-out infinite 1s' }} />
 
         <div className="container">
           <div className="hero-content" style={{ maxWidth: 780 }}>
@@ -118,7 +147,7 @@ export default function Home() {
 
             <div className="hero-btns">
               <button className="btn btn-primary" onClick={() => navigate('/services')}>
-                Explore Services <span>→</span>
+                Explore Services <ChevronRight size={16} />
               </button>
               <button className="btn btn-outline" onClick={() => navigate('/about')}>
                 Get Free Quote
@@ -138,7 +167,9 @@ export default function Home() {
         <div className="ticker-track">
           {[...TECH_TAGS, ...TECH_TAGS].map((tag, i) => (
             <div className="ticker-item" key={i}>
-              <span>◆</span> {tag}
+              <span style={{ color: 'var(--green)', display: 'inline-flex', verticalAlign: 'middle' }}>
+                <Zap size={12} />
+              </span>{' '}{tag}
             </div>
           ))}
         </div>
@@ -175,15 +206,20 @@ export default function Home() {
           <div className="services-grid">
             {SERVICES_PREVIEW.map((s, i) => (
               <div key={i} className={`card service-card reveal delay-${(i % 3) + 1}`}>
-                <div className="icon-box">{s.icon}</div>
-                <div className="tag">◆ {s.tag}</div>
+                <div className="icon-box">{SERVICE_ICONS[s.iconKey]}</div>
+                <div className="tag">
+                  <span style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: 4 }}>
+                    <Shield size={10} color="var(--green)" />
+                  </span>
+                  {s.tag}
+                </div>
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
                 <div className="tech-pills">
                   {s.techs.map(t => <span key={t} className="tech-pill">{t}</span>)}
                 </div>
                 <Link to="/services" className="learn-more">
-                  Learn more →
+                  Learn more <ChevronRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} />
                 </Link>
               </div>
             ))}
@@ -191,7 +227,7 @@ export default function Home() {
 
           <div className="reveal" style={{ textAlign: 'center', marginTop: 48 }}>
             <Link to="/services" className="btn btn-ghost">
-              View All Services →
+              View All Services <ChevronRight size={16} style={{ display: 'inline', verticalAlign: 'middle' }} />
             </Link>
           </div>
         </div>
@@ -200,8 +236,10 @@ export default function Home() {
       {/* ── WHY TRIONEXIUM ── */}
       <section className="section" style={{ background: 'var(--dark)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}
-            className="responsive-2col">
+          <div
+            style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}
+            className="responsive-2col"
+          >
             <div>
               <div className="section-tag reveal-left">Why Choose Us</div>
               <h2 className="section-title reveal-left delay-1">
@@ -211,12 +249,7 @@ export default function Home() {
                 With 8+ years of enterprise experience and 50+ clients served across the Middle East and globally, we bring deep technical expertise and business understanding to every engagement.
               </p>
 
-              {[
-                { icon: '⚡', title: 'Rapid Delivery', desc: 'Agile methodology ensures faster time-to-market without sacrificing quality.' },
-                { icon: '🔒', title: 'Security-First', desc: 'Enterprise-grade security built into every solution from the ground up.' },
-                { icon: '🌍', title: 'Global Standards', desc: 'Compliance with international and regional regulations including ZATCA, GDPR, and ISO.' },
-                { icon: '🤝', title: 'Long-term Partnership', desc: 'We invest in your success. Ongoing support, scaling, and continuous improvement.' },
-              ].map((item, i) => (
+              {WHY_US.map((item, i) => (
                 <div key={i} className={`value-card reveal-left delay-${i + 2}`} style={{ marginBottom: 16 }}>
                   <div className="value-icon">{item.icon}</div>
                   <div>
@@ -244,27 +277,39 @@ export default function Home() {
                 }} />
 
                 <div style={{ textAlign: 'center', marginBottom: 32 }}>
-                  <div style={{ fontSize: '4rem', marginBottom: 12, animation: 'float 3s ease-in-out infinite' }}>🚀</div>
+                  <div style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    width: 72, height: 72, borderRadius: 20,
+                    background: 'var(--green-dim)', border: '1px solid var(--border)',
+                    margin: '0 auto 12px',
+                    animation: 'float 3s ease-in-out infinite',
+                  }}>
+                    <Rocket size={32} color="var(--green)" />
+                  </div>
                   <h3 style={{ fontSize: '1.25rem', marginBottom: 8 }}>Ready to Start?</h3>
                   <p style={{ color: 'var(--gray)', fontSize: '0.9rem' }}>Get a free project consultation and custom quote</p>
                 </div>
 
-                {[
-                  ['✅', 'Free Technical Consultation'],
-                  ['✅', 'Custom Solution Design'],
-                  ['✅', 'No Obligation Quote'],
-                  ['✅', 'Fast 24hr Response'],
-                  ['✅', 'NDA & Confidentiality'],
-                ].map(([icon, text]) => (
+                {QUOTE_CHECKLIST.map((text) => (
                   <div key={text} style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 14 }}>
-                    <span style={{ color: 'var(--green)', fontSize: '1.1rem' }}>{icon}</span>
+                    <div style={{
+                      width: 20, height: 20, borderRadius: '50%',
+                      background: 'var(--green-dim)', border: '1px solid var(--green)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      flexShrink: 0,
+                    }}>
+                      <Check size={12} color="var(--green)" strokeWidth={3} />
+                    </div>
                     <span style={{ fontSize: '0.9rem', color: 'var(--gray)' }}>{text}</span>
                   </div>
                 ))}
 
-                <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 24 }}
-                  onClick={() => navigate('/about')}>
-                  Get Free Quote ↗
+                <button
+                  className="btn btn-primary"
+                  style={{ width: '100%', justifyContent: 'center', marginTop: 24 }}
+                  onClick={() => navigate('/about')}
+                >
+                  Get Free Quote <ChevronRight size={16} />
                 </button>
               </div>
             </div>
@@ -314,7 +359,10 @@ export default function Home() {
           <div className="clients-track">
             {[...CLIENTS, ...CLIENTS].map((c, i) => (
               <div key={i} className="client-logo">
-                <span style={{ color: 'var(--green)', marginRight: 8 }}>◆</span> {c}
+                <span style={{ color: 'var(--green)', marginRight: 8, display: 'inline-flex', verticalAlign: 'middle' }}>
+                  <Shield size={12} />
+                </span>
+                {c}
               </div>
             ))}
           </div>
@@ -334,7 +382,7 @@ export default function Home() {
             </p>
             <div className="cta-btns">
               <button className="btn btn-primary" onClick={() => navigate('/about')}>
-                Get Free Consultation ↗
+                Get Free Consultation <ChevronRight size={16} />
               </button>
               <button className="btn btn-outline" onClick={() => navigate('/services')}>
                 Explore Services
