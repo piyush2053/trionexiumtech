@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { useQuoteModal } from '../contexts/QuoteModalContext'
 import logo from '../assets/logo.png'
 
 const links = [
@@ -12,6 +13,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
+  const { openQuoteModal } = useQuoteModal()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -24,7 +26,7 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  const handleQuote = () => { navigate('/#contact'); setOpen(false) }
+  const handleQuote = () => { openQuoteModal(); setOpen(false) }
 
   return (
     <>

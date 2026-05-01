@@ -7,6 +7,7 @@ import Services from './pages/Services'
 import About from './pages/About'
 import TermsConditions from './pages/TermsConditions'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import { QuoteModalProvider } from './contexts/QuoteModalContext'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -36,7 +37,9 @@ function Layout() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Layout />
+      <QuoteModalProvider>
+        <Layout />
+      </QuoteModalProvider>
     </BrowserRouter>
   )
 }

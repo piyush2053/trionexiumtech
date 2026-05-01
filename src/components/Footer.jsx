@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
 import { Globe } from 'lucide-react'
+import { useQuoteModal } from '../contexts/QuoteModalContext'
 import logo from '../assets/logo.png'
 
 export default function Footer() {
+  const { openQuoteModal } = useQuoteModal()
+
   return (
     <footer className="footer">
       <div className="container">
@@ -47,8 +50,8 @@ export default function Footer() {
             <div className="footer-links">
               <Link to="/about" className="footer-link">About Us</Link>
               <Link to="/services" className="footer-link">Services</Link>
-              <Link to="/about#contact" className="footer-link">Contact</Link>
-              <Link to="/about#contact" className="footer-link">Get Quote</Link>
+              <button type="button" className="footer-link" onClick={openQuoteModal} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'inherit' }}>Contact</button>
+              <button type="button" className="footer-link" onClick={openQuoteModal} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'inherit' }}>Get Quote</button>
             </div>
           </div>
 

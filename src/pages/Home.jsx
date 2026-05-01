@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import { useQuoteModal } from '../contexts/QuoteModalContext'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import ParticleCanvas from '../components/ParticleCanvas'
 import AnimatedCounter from '../components/AnimatedCounter'
@@ -110,6 +111,7 @@ const QUOTE_CHECKLIST = [
 export default function Home() {
   useScrollReveal()
   const navigate = useNavigate()
+  const { openQuoteModal } = useQuoteModal()
 
   return (
     <>
@@ -151,7 +153,7 @@ export default function Home() {
               <button className="btn btn-primary" onClick={() => navigate('/services')}>
                 Explore Services <ChevronRight size={16} />
               </button>
-              <button className="btn btn-outline" onClick={() => navigate('/about')}>
+              <button className="btn btn-outline" onClick={openQuoteModal}>
                 Get Free Quote
               </button>
             </div>
@@ -309,7 +311,7 @@ export default function Home() {
                 <button
                   className="btn btn-primary"
                   style={{ width: '100%', justifyContent: 'center', marginTop: 24 }}
-                  onClick={() => navigate('/about')}
+                  onClick={openQuoteModal}
                 >
                   Get Free Quote <ChevronRight size={16} />
                 </button>
