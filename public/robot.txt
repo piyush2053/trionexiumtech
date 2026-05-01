@@ -1,0 +1,14 @@
+# robots.txt — Trionexium Technologies
+# https://trionexiumtechnologies.com
+
+User-agent: *
+Allow: /
+
+# Block any build/dev artifacts if accidentally exposed
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /src/
+
+# Sitemap location
+Sitemap: https://trionexiumtechnologies.com/sitemap.xml
